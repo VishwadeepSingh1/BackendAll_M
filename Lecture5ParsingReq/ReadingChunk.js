@@ -1,6 +1,6 @@
-const http=require('http');
+// const http=require('http');
 const fs=require('fs');
-const server=http.createServer((req,res)=>{
+const userRequestHandler=(req,res)=>{
   console.log(req.url,req.method);
   if(req.url==='/'){
     res.setHeader('Contecnt-type','text/html');
@@ -30,11 +30,26 @@ res.write('</form>');
       body.push(chunk);
      });
      req.on("end",()=>{
-      const fullBody=   Buffer.concat(body).toString(); 
+      const fullBody=   Buffer.concat(body).toString();
+      
       console.log(fullBody);
+
+
+
+      // Now parsing actual
+
+    const params= new  URLSearchParams(fullBody);
+
+const bodyObject=Object.fromEntries(params); 
+    // for(const [key,val] of params.entries()){
+    //   bodyObject[key]=val;
+
+    // }
+    console.log(bodyObject);
+ fs.writeFileSync('user_details.txt',JSON.stringify(bodyObject));
      });
 
-    fs.writeFileSync('user_details.txt','Pranst_data');
+   
     res.statusCode=302;
     res.setHeader('Location','/');
   }
@@ -44,8 +59,5 @@ res.write('</form>');
     res.write('<body><h1>Enter your dept</h1></body>');
     res.write('<html>');
     return res.end();
-});
-const port=3000;
-server.listen(port,()=>{
-  console.log('server listening');
-})
+};
+module.exports=userRequestHandler;
