@@ -43,7 +43,7 @@ else if(req.url==='/calculate-result' && req.method==='POST'){
 res.setHeader('Content-Type','text/html');
 res.write(`<html>
 <head>
-<title>Complete code</title>
+<title>Complete codin</title>
 </head>
     <body>
 <h1>404 not found </h1>
