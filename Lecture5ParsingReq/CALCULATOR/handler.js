@@ -40,16 +40,16 @@ else if(req.url==='/calculate-result' && req.method==='POST'){
    return sumRequestHandler(req,res);
     
 }
-res.setHeader('Content-Type','text/html');
-res.write(`<html>
-<head>
-<title>Complete codin</title>
-</head>
-    <body>
-<h1>404 not found </h1>
-<a href="/">Go to home</a>
-     </body>
-</html>`);  
+// res.setHeader('Content-Type','text/html');
+// res.write(`<html>
+// <head>
+// <title>Complete codin</title>
+// </head>
+//     <body>
+// <h1>404 not found </h1>
+// <a href="/">Go to home</a>
+//      </body>
+// </html>`);  
 };
 
 exports.requestHandler = requestHandler;
